@@ -23,3 +23,4 @@ def generate_agent_wages(n_agents, wage_dist_func):
 
     # vectorize and return disposable wage
     return np.vectorize(wage_dist_func)(xs)
+
