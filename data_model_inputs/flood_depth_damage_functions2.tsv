@@ -1,0 +1,5 @@
+# DD curve from Slager & Wagenaar (2017) [2]
+item	0	0.5	1	1.5	2	2.5	3	3.5	4	4.5	5
+2-House_Structural	0.00%	35.12%	46.49%	48.24%	49.81%	57.55%	65.71%	74.08%	82.87%	95.81%	100.00%
+2-House_Consumption	0.00%	2.35%	5.08%	7.64%	10.99%	21.66%	34.84%	49.91%	68.33%	91.87%	100.00%
+# NB: also see flood_depth_damage_functions.tsv. Separated due to different data resolution

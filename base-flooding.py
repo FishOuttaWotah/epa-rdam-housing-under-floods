@@ -2,9 +2,56 @@
 flood generation
 """
 from typing import Any, Optional
+from scipy.interpolate import interp1d
+from math import isnan
 import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 import random
 import copy
+
+def get_this_bread(table_paths: list[str] = ['data_model_inputs/flood_depth_damage_functions.tsv', 'data_model_inputs/flood_depth_damage_functions2.tsv']):
+    """
+    Convenience function for extracting the default depth-damage functions from the tables
+    :param table_paths:
+    :return: dictionary of depth-damage functions keyed with the name of dataframe indices
+    """
+    # for the default depth-damage curves
+    # retrieve the tables for depth-damage functions
+    fx_dicts = {}
+    for path in table_paths:
+        fx_dicts.update(retrieve_depth_damage_functions(path))
+
+    return fx_dicts
+
+
+def retrieve_depth_damage_functions(table_path :str = 'data_model_inputs/flood_depth_damage_functions.tsv'):
+    # NB: some things are hardcoded here
+    # read TSV file
+    flood_dd_df = pd.read_csv(table_path,sep='\t', comment='#', na_values='N', index_col=0)
+
+    # convert table from str to float (since it cannot parse percentages)
+    for col in flood_dd_df.columns:
+        flood_dd_df[col] = flood_dd_df[col].str.rstrip('%').astype(float)
+    # convert table columns to numeric float
+    flood_dd_df.columns = flood_dd_df.columns.astype('float')
+
+    # separate this section onwards for further processing?
+    # create the functions per row
+    # need to truncate the x for the y
+    xs = flood_dd_df.columns.to_list()
+
+    fx_dicts = {}
+    for row in flood_dd_df.itertuples(name=None):
+        idx = row[0].lower() # the index name, converted to lowercase
+        # truncate the x and y inputs to the interpolation function (because some functions reach 100% early)
+        y_inputs = [y for y in row[1:] if not isnan(y)]
+        x_inputs = xs[:len(y_inputs)]
+        assert len(y_inputs) == len(x_inputs), "y_inputs array different sized to x_inputs array"
+        fx_dicts[idx] = interp1d(x_inputs, y_inputs, bounds_error=False, fill_value=(0, y_inputs[-1]))
+
+    return fx_dicts
 
 
 def extract_scenarios_per_area(input_df: pd.DataFrame,
@@ -59,11 +106,6 @@ def extract_scenarios_per_area(input_df: pd.DataFrame,
     return input_df.loc[general_indices + specific_indices, :]
 
 
-def something():
-    # write the big bitch code for getting flood distribution
-    return
-
-
 def extract_indices_from_specific_scenario(unique_scenarios: list,
                                            unique_areas: list,
                                            specific_scenario: dict) -> tuple[list[str], list]:
@@ -92,24 +134,44 @@ def extract_indices_from_specific_scenario(unique_scenarios: list,
 
     return indices, input_locations
 
+def test_interpolation():
+    # generate x points and plot
+    x_inputs = np.linspace(0, 8, 8*5)
+    functions = get_this_bread(table_paths=['data_model_inputs/flood_depth_damage_functions.tsv', 'data_model_inputs/flood_depth_damage_functions2.tsv'])
+
+    print(functions)
+    outputs = {}
+    fig, ax = plt.subplots()
+
+    for key, fx in functions.items():
+        y = np.vectorize(fx)(x_inputs)
+        plt.plot(x_inputs, y, label=key)
+
+    plt.xlabel('flood height [m]')
+    plt.ylabel('damage factor [-]')
+    plt.title('Test plot of DD Curves')
+    plt.legend()
+    plt.show()
 
 if __name__ == "__main__":
-    # test mode
-    random.seed(1111)  # for testing consistency
-    test_df = pd.read_pickle('data_model_inputs/flood_scenarios_per_wijk.pickletable')
-    locations = test_df.wijk.unique()
-    scenarios = test_df.scenario.unique()
-    test_dict1 = {1: ['rotterdam-centrum', 'feijenoord'], 0: ['pernis', 'noord']}
-
-    # test dict 2: a randomly-generated bunch assignment of flood scenarios
-    test_sample2 = list(zip(random.choices(scenarios, k=len(locations)), locations))
-    test_dict2 = dict([(scenario, []) for scenario in scenarios])
-    for s, l in test_sample2:  # s = scenario, l = location
-        test_dict2[s].append(l)
-
-    # test dict 3: mix
-
-    # test dict 4: with errors (duplicates or out of bounds)
-    test_dict4 = copy.deepcopy(test_dict2)
-    for s, l in test_sample2:
-        test_dict4[s].append(l)
+    # item = get_this_bread()
+    test_interpolation()
+    # # test mode
+    # random.seed(1111)  # for testing consistency
+    # test_df = pd.read_pickle('data_model_inputs/flood_scenarios_per_wijk.pickletable')
+    # locations = test_df.wijk.unique()
+    # scenarios = test_df.scenario.unique()
+    # test_dict1 = {1: ['rotterdam-centrum', 'feijenoord'], 0: ['pernis', 'noord']}
+    #
+    # # test dict 2: a randomly-generated bunch assignment of flood scenarios
+    # test_sample2 = list(zip(random.choices(scenarios, k=len(locations)), locations))
+    # test_dict2 = dict([(scenario, []) for scenario in scenarios])
+    # for s, l in test_sample2:  # s = scenario, l = location
+    #     test_dict2[s].append(l)
+    #
+    # # test dict 3: mix
+    #
+    # # test dict 4: with errors (duplicates or out of bounds)
+    # test_dict4 = copy.deepcopy(test_dict2)
+    # for s, l in test_sample2:
+    #     test_dict4[s].append(l)
