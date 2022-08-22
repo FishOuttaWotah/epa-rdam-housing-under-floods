@@ -13,7 +13,7 @@ import copy
 
 def get_this_bread(table_paths: list[str] = ['data_model_inputs/flood_depth_damage_functions.tsv', 'data_model_inputs/flood_depth_damage_functions2.tsv']):
     """
-    Convenience function for extracting the default depth-damage functions from the tables
+    Convenience function for extracting the default depth-damage functions from the tables. Uses the retrieve_depth_damage_functions method.
     :param table_paths:
     :return: dictionary of depth-damage functions keyed with the name of dataframe indices
     """

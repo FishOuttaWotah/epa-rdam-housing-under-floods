@@ -1,4 +1,4 @@
-
+#
 from typing import Union, TYPE_CHECKING
 import numpy as np
 import pandas as pd
@@ -23,11 +23,23 @@ class CRAB_H_Model(mesa.Model):
                  areas_and_demographics_df,
                  mortgage_rates,
                  household_agent_ratio: int=1,
-                 spatial_res: str = 'wijk'
+                 spatial_res: str = 'wijk',
+                 seed: Union[int, None] = None,
+                 agent_actual_ratio: int = 10,
+                 firm_actual_ratio: int = 10,
+                 firm_types: list = [],
+                 firm_ratios: list = []
                  ):
         super().__init__()
+
+        # sanity check
+        if len(firm_types) != len (firm_ratios):
+            raise ValueError("firm_types input should be the same length as the firm_ratios input")
+        # introduce the seed value to the original
         # include some variable describing the starting migration flow for R'dam
-        #
+
+
+
 
         return
 

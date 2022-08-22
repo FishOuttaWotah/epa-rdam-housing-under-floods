@@ -1,5 +1,10 @@
+from typing import Tuple, Union, List, Any, Optional, Iterable
+
 import numpy as np
 import numpy.random
+from numpy import ndarray
+
+## DEPRECIATED ?
 def cubic_disposable_wage_func(x):
     """
     3rd-order polynomial curve fitted with CBS disposable income data. Curve fitted in MS Excel for transparency
@@ -10,6 +15,7 @@ def cubic_disposable_wage_func(x):
 
 def generate_agent_wages(n_agents, wage_dist_func):
     """
+    
     Generate agents with distribution of wages based off the cubic disposable wage function. Agents are first generated via uniform distribution and then applied to the wage function.
     :param n_agents: number of agents to generate
     :param wage_dist_func: function used to generate wages from uniform distribution
@@ -27,7 +33,8 @@ def generate_agent_wages(n_agents, wage_dist_func):
 def generate_flood_distribution_in_bins(input_arr: np.ndarray,
                                         bins,
                                         outlier_ceil: float = None,
-                                        exclude_outliers: bool=True):
+                                        exclude_outliers: bool=True) -> tuple[
+    Union[ndarray, Iterable, int, float], list[Any], Union[list[Any], Any]]:
     """
     Fits the flood distribution array into pre-defined bins. Bins must be monotonically increasing. Two classes of outliers exist: acceptable outliers and unaccepted outliers.
 
