@@ -1,8 +1,6 @@
-""""
-flood generation
-"""
-from typing import Any, Optional
-from scipy.interpolate import interp1d
+from __future__ import annotations
+from typing import Any, Optional, Sequence, Callable
+import scipy.interpolate
 from math import isnan
 import pandas as pd
 import numpy as np
@@ -11,14 +9,30 @@ import matplotlib.pyplot as plt
 import random
 import copy
 
-def get_this_bread(table_paths: list[str] = ['data_model_inputs/flood_depth_damage_functions.tsv', 'data_model_inputs/flood_depth_damage_functions2.tsv']):
+
+def convert_depth_to_damage(DD_func: Callable,
+                            flood_depths: tuple[float]) -> tuple[float]:
+    # not the most efficient method, but works
+
+    # damages = []
+    # for depth in flood_depths:
+    #     dmg = 0.
+    #     if depth > 0.:
+    #         dmg: float = DD_func(depth)
+    #     damages.append(dmg)
+    #
+    # return tuple(damages)
+    return tuple([DD_func(depth) for depth in flood_depths])
+
+
+def get_slager_huizinga_DDfuncs(table_paths: list[str] = ['data_model_inputs/flood_depth_damage_functions.tsv',
+                                                          'data_model_inputs/flood_depth_damage_functions2.tsv']):
     """
     Convenience function for extracting the default depth-damage functions from the tables. Uses the retrieve_depth_damage_functions method.
     :param table_paths:
     :return: dictionary of depth-damage functions keyed with the name of dataframe indices
     """
-    # for the default depth-damage curves
-    # retrieve the tables for depth-damage functions
+    # extract the Depth-damage curve from both sources
     fx_dicts = {}
     for path in table_paths:
         fx_dicts.update(retrieve_depth_damage_functions(path))
@@ -26,14 +40,14 @@ def get_this_bread(table_paths: list[str] = ['data_model_inputs/flood_depth_dama
     return fx_dicts
 
 
-def retrieve_depth_damage_functions(table_path :str = 'data_model_inputs/flood_depth_damage_functions.tsv'):
+def retrieve_depth_damage_functions(table_path: str = 'data_model_inputs/flood_depth_damage_functions.tsv'):
     # NB: some things are hardcoded here
     # read TSV file
-    flood_dd_df = pd.read_csv(table_path,sep='\t', comment='#', na_values='N', index_col=0)
+    flood_dd_df = pd.read_csv(table_path, sep='\t', comment='#', na_values='N', index_col=0)
 
     # convert table from str to float (since it cannot parse percentages)
     for col in flood_dd_df.columns:
-        flood_dd_df[col] = flood_dd_df[col].str.rstrip('%').astype(float)
+        flood_dd_df[col] = flood_dd_df[col].str.rstrip('%').astype(float) / 100
     # convert table columns to numeric float
     flood_dd_df.columns = flood_dd_df.columns.astype('float')
 
@@ -44,12 +58,12 @@ def retrieve_depth_damage_functions(table_path :str = 'data_model_inputs/flood_d
 
     fx_dicts = {}
     for row in flood_dd_df.itertuples(name=None):
-        idx = row[0].lower() # the index name, converted to lowercase
+        idx = row[0].lower()  # the index name, converted to lowercase
         # truncate the x and y inputs to the interpolation function (because some functions reach 100% early)
         y_inputs = [y for y in row[1:] if not isnan(y)]
         x_inputs = xs[:len(y_inputs)]
         assert len(y_inputs) == len(x_inputs), "y_inputs array different sized to x_inputs array"
-        fx_dicts[idx] = interp1d(x_inputs, y_inputs, bounds_error=False, fill_value=(0, y_inputs[-1]))
+        fx_dicts[idx] = scipy.interpolate.interp1d(x_inputs, y_inputs, bounds_error=False, fill_value=(0, y_inputs[-1]))
 
     return fx_dicts
 
@@ -134,28 +148,34 @@ def extract_indices_from_specific_scenario(unique_scenarios: list,
 
     return indices, input_locations
 
-def test_interpolation():
-    # generate x points and plot
-    x_inputs = np.linspace(0, 8, 8*5)
-    functions = get_this_bread(table_paths=['data_model_inputs/flood_depth_damage_functions.tsv', 'data_model_inputs/flood_depth_damage_functions2.tsv'])
 
-    print(functions)
-    outputs = {}
-    fig, ax = plt.subplots()
+def sort_flood_categories(exp_df: pd.DataFrame, floodplains: Sequence[str]):
+    # convenience function with lazy code
+    exp_df = exp_df.copy(deep=True)
+    conditions = [
+        (exp_df[0] > 0) & (exp_df[1] > 0),
+        (exp_df[0] > 0),
+        (exp_df[1] > 0),
+        (exp_df['district'].isin(floodplains[0])) & (exp_df['district'].isin(floodplains[1])),
+        (exp_df['district'].isin(floodplains[0])),
+        (exp_df['district'].isin(floodplains[1]))
+    ]
+    outcomes = ['Flooded, 1+2',
+                'Flooded, 1',
+                'Flooded, 2',
+                'Unflooded, close proximity 1+2',
+                'Unflooded, close proximity 1',
+                'Unflooded, close proximity 2']
+    exp_df['category'] = np.select(conditions, outcomes, default='Unflooded, safe')
+    exp_df['category'] = exp_df['category'].astype('category')  # cast to category for faster sorting
+    # counts = exp_df['category'].value_counts()
+    # print('done sort')
+    return exp_df
 
-    for key, fx in functions.items():
-        y = np.vectorize(fx)(x_inputs)
-        plt.plot(x_inputs, y, label=key)
 
-    plt.xlabel('flood height [m]')
-    plt.ylabel('damage factor [-]')
-    plt.title('Test plot of DD Curves')
-    plt.legend()
-    plt.show()
-
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # item = get_this_bread()
-    test_interpolation()
+    # test_interpolation()
     # # test mode
     # random.seed(1111)  # for testing consistency
     # test_df = pd.read_pickle('data_model_inputs/flood_scenarios_per_wijk.pickletable')

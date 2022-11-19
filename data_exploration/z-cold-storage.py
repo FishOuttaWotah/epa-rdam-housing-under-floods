@@ -17,3 +17,12 @@ def regex_cubic_2018_besteedbaar(decile):
     :return: household disposable income
     """
     return 0.1807 * (decile * decile * decile) - 18.6247 * (decile * decile) + 1074.5260 * decile + 7334.1725
+
+
+#
+# # TODO: perhaps depreciated since interp1d can be applied in bulk
+# # note: maybe this function could be placed in a more general area
+# def create_population(population: Sequence,
+#                       mapping: Callable) -> Sequence:
+#     # given agents' percentiles, do the mapping
+#     return mapping(population)

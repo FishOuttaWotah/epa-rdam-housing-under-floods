@@ -1,6 +1,9 @@
+from typing import Sequence
 import pandas as pd
 import numpy as np
 import rasterio
+# import rasterio.mask, rasterio.features, rasterio.plot
+
 
 def read_CBS_excel(filepath:str, index_name:str, convert_to_Int64:bool=False):
     # reads excel file from Rotterdam Onderwijs010 site and processes
@@ -37,7 +40,7 @@ def get_tile_images(image, width=8, height=8):
         writeable=False
     )
 
-def reconvert_np_to_rasterio_dataset(raster, transform, **kwargs):
+def reconvert_np_to_rasterio_dataset(raster, transform, count, **kwargs):
     """
     Derived from solution written by Luna:
     https://gis.stackexchange.com/questions/329434/creating-an-in-memory-rasterio-dataset-from-numpy-array
@@ -47,6 +50,8 @@ def reconvert_np_to_rasterio_dataset(raster, transform, **kwargs):
 
     Args:
         raster (numpy.ndarray): raster to be masked with dim: [H, W]
+        transform: affine transform object
+        count: bands to record
         shapes, **kwargs: passed to rasterio.mask.mask
 
     Returns:
@@ -57,7 +62,7 @@ def reconvert_np_to_rasterio_dataset(raster, transform, **kwargs):
             driver='GTiff',
             height=raster.shape[0],
             width=raster.shape[1],
-            count=1,
+            count=count,
             dtype=raster.dtype,
             transform=transform,
         ) as dataset:
@@ -66,3 +71,9 @@ def reconvert_np_to_rasterio_dataset(raster, transform, **kwargs):
         #     output, _ = rasterio.mask.mask(dataset, shapes, **kwargs)
         return memfile.open()
 
+def clean_flood_map_with_topography(flood_map_path,
+                   terrain_raster):
+    # uses topography to clean the flood map
+
+
+    return
