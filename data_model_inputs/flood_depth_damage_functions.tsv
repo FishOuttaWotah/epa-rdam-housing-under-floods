@@ -1,0 +1,11 @@
+# DD graphs from Huizinga (2007/2017) and Slager & Wagenaar (2017)
+Item	0	0.5	1	1.5	2	3	4	5	6	7	8
+1-Residences	0.00%	3.55%	6.60%	8.26%	10.85%	21.51%	43.05%	57.55%	57.55%	N	N
+1-Industry	4.12%	7.23%	9.72%	12.83%	15.84%	22.01%	61.06%	100.00%	N	N	N
+1-Commerce	3.94%	6.96%	9.92%	12.87%	16.24%	22.22%	61.13%	100.00%	N	N	N
+2-Offices	0.00%	20.39%	31.52%	41.87%	47.83%	56.29%	71.19%	86.40%	91.44%	95.36%	100.00%
+2-Shops	0.00%	35.13%	55.36%	74.03%	84.68%	100.00%	N	N	N	N	N
+2-Industry	0.00%	22.15%	37.58%	45.14%	54.41%	73.12%	100.00%	N	N	N	N
+# Residences, Industry, Commerce from Huizinga 2007 and 2017 [1]
+# Offices, Shops, Industry from Slager and Wagenaar (2017): Standaardmethode 2017 Schade en slachtoffers [2]
+# NB: Also see flood_depth_damage_functions2.tsv for houses. They are separated due to different depth resolution

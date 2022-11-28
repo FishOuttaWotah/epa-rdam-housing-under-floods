@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1c07ac42-3d64-420f-a0e4-1c45ab0642ce" name="Changes" comment="basic push of thesis work, probably missing some things" />
+    <list id="037b9b57-b836-437d-9ebb-897e11caba60" name="Cold Storage" comment="Tracks items that don't need to be sent to VCS" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="Jupyter Notebook" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../../../../Users/fishe/miniconda3/envs/tpm-aabm/Lib/site-packages/pandas/core/generic.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/../../../../../Users/fishe/miniconda3/envs/tpm-aabm/Lib/site-packages/pandas/core/indexes/base.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectId" id="29EmF5greV0P8Zt2obpyBZn1AV2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Downloads/@Books/@TPM/@THESIS/code/depreciated&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  }
+}</component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings>
+        <option name="useSoftWraps" value="true" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Downloads\@Books\@TPM\@THESIS\code\depreciated" />
+      <recent name="D:\Downloads\@Books\@TPM\@THESIS\code\data_exploration" />
+      <recent name="D:\Downloads\@Books\@TPM\@THESIS\code" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Downloads\@Books\@TPM\@THESIS\code\data_exploration" />
+      <recent name="D:\Downloads\@Books\@TPM\@THESIS\code\depreciated" />
+      <recent name="D:\Downloads\@Books\@TPM\@THESIS\code\data\flood_breaks" />
+      <recent name="D:\Downloads\@Books\@TPM\@THESIS\code\data\flood_breaks_(problem)" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.@experiments">
+    <configuration name="@experiments" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/@experiments.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Standard" type="PythonConfigurationType" factoryName="Python">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="D:\Users\fishe\miniconda3\envs\tpm-aabm\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="D:\Downloads\@Books\@TPM\@THESIS\code\util_data_exploration.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="agent_firm_basic" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="D:\Downloads\@Books\@TPM\@THESIS\code\depreciated\agent_firm_basic.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="env_damage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/env_damage.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="env_socioeconomic" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="D:\Downloads\@Books\@TPM\@THESIS\code\depreciated\env_socioeconomic.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="model_experiment_utils" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model_experiment_utils.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.Standard" />
+      <item itemvalue="Python.@experiments" />
+      <item itemvalue="Python.agent_firm_basic" />
+      <item itemvalue="Python.env_damage" />
+      <item itemvalue="Python.env_socioeconomic" />
+      <item itemvalue="Python.model_experiment_utils" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.model_experiment_utils" />
+        <item itemvalue="Python.env_socioeconomic" />
+        <item itemvalue="Python.env_damage" />
+        <item itemvalue="Python.agent_firm_basic" />
+        <item itemvalue="Python.@experiments" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1c07ac42-3d64-420f-a0e4-1c45ab0642ce" name="Changes" comment="" />
+      <changelist id="037b9b57-b836-437d-9ebb-897e11caba60" name="Cold Storage" comment="Tracks items that don't need to be sent to VCS" />
+      <created>1652686511826</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1652686511826</updated>
+      <workItem from="1652686513044" duration="2103000" />
+      <workItem from="1652688732417" duration="6937000" />
+      <workItem from="1652768273562" duration="8846000" />
+      <workItem from="1652854305931" duration="361000" />
+      <workItem from="1652854804554" duration="131000" />
+      <workItem from="1652855240189" duration="915000" />
+      <workItem from="1652856643178" duration="7405000" />
+      <workItem from="1652875077452" duration="6725000" />
+      <workItem from="1652942554713" duration="156000" />
+      <workItem from="1655294246203" duration="4470000" />
+      <workItem from="1655361267209" duration="7655000" />
+      <workItem from="1655707319921" duration="8754000" />
+      <workItem from="1655791592023" duration="7528000" />
+      <workItem from="1655878503435" duration="18557000" />
+      <workItem from="1655965804580" duration="2496000" />
+      <workItem from="1655982126120" duration="8854000" />
+      <workItem from="1656050827193" duration="92000" />
+      <workItem from="1656051268536" duration="372000" />
+      <workItem from="1656051674660" duration="121000" />
+      <workItem from="1656051826696" duration="9802000" />
+      <workItem from="1656311525909" duration="15326000" />
+      <workItem from="1656394560732" duration="5033000" />
+      <workItem from="1656422088447" duration="3395000" />
+      <workItem from="1656922487018" duration="3837000" />
+      <workItem from="1657026259511" duration="2720000" />
+      <workItem from="1657090485389" duration="6289000" />
+      <workItem from="1657115719052" duration="1778000" />
+      <workItem from="1657173401646" duration="9460000" />
+      <workItem from="1657265015005" duration="2739000" />
+      <workItem from="1657615069920" duration="6740000" />
+      <workItem from="1658039357758" duration="36633000" />
+      <workItem from="1658643749268" duration="9405000" />
+      <workItem from="1658728133794" duration="1434000" />
+      <workItem from="1658902063570" duration="18213000" />
+      <workItem from="1658990652794" duration="11111000" />
+      <workItem from="1659083399945" duration="916000" />
+      <workItem from="1659505106935" duration="3635000" />
+      <workItem from="1659601217179" duration="9669000" />
+      <workItem from="1659687886921" duration="1874000" />
+      <workItem from="1659941735716" duration="1492000" />
+      <workItem from="1660026706533" duration="593000" />
+      <workItem from="1660110258113" duration="3033000" />
+      <workItem from="1660287203139" duration="13605000" />
+      <workItem from="1660545908012" duration="18608000" />
+      <workItem from="1660629744700" duration="9378000" />
+      <workItem from="1660724414459" duration="2243000" />
+      <workItem from="1660728739360" duration="953000" />
+      <workItem from="1660730505112" duration="10572000" />
+      <workItem from="1660800975035" duration="4536000" />
+      <workItem from="1661154246437" duration="5330000" />
+      <workItem from="1661332809817" duration="2959000" />
+      <workItem from="1661494886795" duration="11743000" />
+      <workItem from="1661577496386" duration="5862000" />
+      <workItem from="1661756522611" duration="10028000" />
+      <workItem from="1662019066130" duration="14489000" />
+      <workItem from="1662102684348" duration="7750000" />
+      <workItem from="1662185554693" duration="7625000" />
+      <workItem from="1662274084329" duration="2312000" />
+      <workItem from="1662276746727" duration="5080000" />
+      <workItem from="1662359392532" duration="37257000" />
+      <workItem from="1662528630562" duration="7344000" />
+      <workItem from="1662574670807" duration="6963000" />
+      <workItem from="1662709435493" duration="418000" />
+      <workItem from="1662710487666" duration="4717000" />
+      <workItem from="1662728340088" duration="16795000" />
+      <workItem from="1662962764091" duration="3822000" />
+      <workItem from="1662970174460" duration="556000" />
+      <workItem from="1662971689422" duration="14728000" />
+      <workItem from="1663056331576" duration="4365000" />
+      <workItem from="1663139779993" duration="8275000" />
+      <workItem from="1663223689181" duration="7014000" />
+      <workItem from="1663247776195" duration="7934000" />
+      <workItem from="1663312595065" duration="18737000" />
+      <workItem from="1663488600080" duration="7059000" />
+      <workItem from="1663568990535" duration="3069000" />
+      <workItem from="1663572231980" duration="6222000" />
+      <workItem from="1663667756378" duration="11102000" />
+      <workItem from="1663744673498" duration="9868000" />
+      <workItem from="1663828171878" duration="7579000" />
+      <workItem from="1663854497793" duration="7616000" />
+      <workItem from="1663924555254" duration="17291000" />
+      <workItem from="1664132974659" duration="4316000" />
+      <workItem from="1664173029324" duration="17664000" />
+      <workItem from="1664261781243" duration="12401000" />
+      <workItem from="1664437185444" duration="14891000" />
+      <workItem from="1664523208593" duration="12913000" />
+      <workItem from="1664777716598" duration="23251000" />
+      <workItem from="1664864589187" duration="8534000" />
+      <workItem from="1664948765818" duration="10281000" />
+      <workItem from="1665029967541" duration="11709000" />
+      <workItem from="1665059626492" duration="8959000" />
+      <workItem from="1665078946585" duration="618000" />
+      <workItem from="1665135289080" duration="2516000" />
+      <workItem from="1665406272674" duration="2654000" />
+      <workItem from="1665467836733" duration="16099000" />
+      <workItem from="1665556071576" duration="8140000" />
+      <workItem from="1665573652167" duration="1580000" />
+      <workItem from="1665603420018" duration="2312000" />
+      <workItem from="1665640134491" duration="13193000" />
+      <workItem from="1665729298691" duration="4546000" />
+      <workItem from="1665734913811" duration="17091000" />
+      <workItem from="1665817106589" duration="3549000" />
+      <workItem from="1665986878423" duration="18956000" />
+      <workItem from="1666073330846" duration="20600000" />
+      <workItem from="1666160943468" duration="484000" />
+      <workItem from="1666161756095" duration="5459000" />
+      <workItem from="1666193123567" duration="5950000" />
+      <workItem from="1666199236442" duration="6220000" />
+      <workItem from="1666333668641" duration="19787000" />
+      <workItem from="1666416961070" duration="11004000" />
+      <workItem from="1666589437008" duration="83441000" />
+      <workItem from="1667055309691" duration="3562000" />
+      <workItem from="1667117820218" duration="29734000" />
+      <workItem from="1668145785941" duration="21888000" />
+      <workItem from="1668255456490" duration="15372000" />
+      <workItem from="1668419916046" duration="10657000" />
+      <workItem from="1668541299776" duration="1193000" />
+      <workItem from="1668598693190" duration="33949000" />
+      <workItem from="1669020190905" duration="675000" />
+      <workItem from="1669123180327" duration="723000" />
+      <workItem from="1669210649118" duration="3470000" />
+      <workItem from="1669370082773" duration="599000" />
+      <workItem from="1669618787272" duration="581000" />
+      <workItem from="1669619396227" duration="346000" />
+    </task>
+    <task id="LOCAL-00001" summary="initial commit for local experimentation:&#10;- household data cleaning (initial)&#10;- locational data integration (intial)">
+      <created>1655987236267</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1655987236267</updated>
+    </task>
+    <task id="LOCAL-00002" summary="omnibus commit (sorry for the mess) for:&#10;- first start at mortgage tables into interpolation functions per interest level&#10;- socioeconomic interpolation for gross income to disposable income&#10;- rough work stuff in jupyter notebooks&#10;- addition of model-specific base files (mostly empty)">
+      <created>1658230704191</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1658230704191</updated>
+    </task>
+    <task id="LOCAL-00003" summary="aggregated table for consumption rates across different deciles">
+      <created>1658650516992</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1658650516992</updated>
+    </task>
+    <task id="LOCAL-00004" summary="flooding statistical binning and functions relevant for household agent creation">
+      <created>1659075393924</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1659075393924</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Updated flooding model input functions: flooding scenario assignment and depth-damage curve">
+      <created>1659947632896</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1659947632896</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Omnibus of additions: socioeconomic distribution, default model inputs as pickle tables, and updates in the data exploration in jupyter notebooks">
+      <created>1661159267764</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1661159267764</updated>
+    </task>
+    <task id="LOCAL-00007" summary="name revision">
+      <created>1661161215841</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1661161215841</updated>
+    </task>
+    <task id="LOCAL-00008" summary="basic push of thesis work, probably missing some things">
+      <created>1668854776242</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1668854776242</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initial commit for local experimentation:&#10;- household data cleaning (initial)&#10;- locational data integration (intial)" />
+    <MESSAGE value="omnibus commit (sorry for the mess) for:&#10;- first start at mortgage tables into interpolation functions per interest level&#10;- socioeconomic interpolation for gross income to disposable income&#10;- rough work stuff in jupyter notebooks&#10;- addition of model-specific base files (mostly empty)" />
+    <MESSAGE value="aggregated table for consumption rates across different deciles" />
+    <MESSAGE value="flooding statistical binning and functions relevant for household agent creation" />
+    <MESSAGE value="Updated flooding model input functions: flooding scenario assignment and depth-damage curve" />
+    <MESSAGE value="Omnibus of additions: socioeconomic distribution, default model inputs as pickle tables, and updates in the data exploration in jupyter notebooks" />
+    <MESSAGE value="name revision" />
+    <MESSAGE value="basic push of thesis work, probably missing some things" />
+    <option name="LAST_COMMIT_MESSAGE" value="basic push of thesis work, probably missing some things" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="self.h_discounted" />
+        <watch expression="self.h_flooded" />
+        <watch expression="self.housing_market.sold" />
+        <watch expression="self.d_attraction" />
+        <watch expression="self.schedule.steps" />
+        <watch expression="self.housing_market.sold" />
+        <watch expression="model.h_discounted" />
+        <watch expression="self.model.h_discounted" />
+        <watch expression="self.model.h_sellers" />
+        <watch expression="sliced" />
+        <watch expression="self.sold" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/code$model_init.coverage" NAME="model_init Coverage Results" MODIFIED="1663230792407" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/code$model_scheduler.coverage" NAME="model_scheduler Coverage Results" MODIFIED="1661581913494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/code$_experiments.coverage" NAME="@experiments Coverage Results" MODIFIED="1668618239858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/code$agent_generator.coverage" NAME="agent_generator Coverage Results" MODIFIED="1663230480892" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/code$env_socioeconomic.coverage" NAME="env_socioeconomic Coverage Results" MODIFIED="1663857941733" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/code$base_socioeconomic.coverage" NAME="base-socioeconomic Coverage Results" MODIFIED="1660751586242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
