@@ -97,7 +97,7 @@ if __name__ == '__main__':
 
     run_sim = False  # True to run all sims.
     test_sim = False
-    label_addition = 'v4b'  # suffix for future retrieval
+    label_addition = 'v0'  # suffix for future retrieval
     seed = 0  # for testing
     random.seed(seed)  # random draw seeds for scenarios
     n_processes = 7
