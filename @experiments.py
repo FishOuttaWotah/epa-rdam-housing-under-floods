@@ -21,11 +21,10 @@ import env_flooding
 from env_housing_market import HousingMarket, Buyer
 
 
-
-
 # dummy reporting for Pool
 def report_callback(result):
     print(result)
+
 
 def report_error(error):
     raise error
@@ -41,7 +40,7 @@ if __name__ == '__main__':
     hh_movers_df = pd.read_pickle('data_model_inputs/households_migration.pickletable')
     buyer_args = {}  # {'bid_bounds':(0.9, 1.1, 0.01)}
     fld_events = fld_df.scenario.unique()
-    fld_shortnames = dict(zip(fld_events,MEU.get_trimmed_names(fld_events)))
+    fld_shortnames = dict(zip(fld_events, MEU.get_trimmed_names(fld_events)))  # depreciated
 
     ## Set up interpolation for socio-economics (based off env_socieoconomic.py)
     rdam_income_df = pd.read_pickle('data_model_inputs/income_gross_to_disposable.pickletable')
@@ -49,7 +48,8 @@ if __name__ == '__main__':
     income_gross = [income_gross[0]] + income_gross
     income_disposable = rdam_income_df.besteedbaar.to_list()
     income_disposable = [income_disposable[0]] + income_disposable
-    x_range = np.linspace(0.1, 1.0, len(income_gross) - 1) - 0.05  # should represent every 10% percentile at their median
+    x_range = np.linspace(0.1, 1.0,
+                          len(income_gross) - 1) - 0.05  # should represent every 10% percentile at their median
     x_range = np.insert(x_range, obj=0, values=[0.])
 
     # set up inputs for flooding
@@ -78,26 +78,38 @@ if __name__ == '__main__':
                         (Buyer, Buyer.stagelist_B),
                         (HousingMarket, HousingMarket.stagelist2)]
 
-
     # --- MODEL INPUTS ---
     attract_max_pen = 100  ## note this could be set to 100 for B runs with full devastation
     buyer_seller_ratio = 7
     FLD_REPAIR_RATE = 1.  # essentially repair when done
     DMG_DISCOUNT_RATE = -1  # assumption
-    flood_event_categories = [0,1,2]
     n_scenarios_per_category = np.inf  # 10 or np.inf for all permutations
-    n_variants = 9
+    n_variants = None  # depreciated
     STEPS_PER_YEAR = 4
-    seeds = list(range(1))  # number of iterations with consistent seeds.
-    household_target_pop = 5000 #  target number of houses for model. Default 3000
+
+
+    household_target_pop = 5000  # target number of houses for model. Default 3000
     t_next_flood_upper_bound = 10 * STEPS_PER_YEAR  # for interval-based upper limit
     # t_last_trailing = 16 * STEPS_PER_YEAR  # original
     t_last_trailing = 16 * STEPS_PER_YEAR
     timing_generation_mode = 2
 
-    run_sim = False  # True to run all sims.
+    run_sim = True  # True to run all sims.
     test_sim = False
-    label_addition = 'v0'  # suffix for future retrieval
+
+    run_pt = 2  # todo: ensure this is 1 or 2
+    if run_pt == 1:  # run with 2-floods for 1 rep each
+        flood_event_categories = [2]
+        seeds = list(range(1))  # number of iterations with consistent seeds.
+        overwrite_scen_df = True # set true to restart overwrite
+    elif run_pt == 2:  # run control and 1-flood for 40 reps
+        flood_event_categories = [0,1]
+        seeds = list(range(40))
+        overwrite_scen_df = False
+    else:
+        raise ValueError("currently only accepts run_pt 1 and 2")
+
+    label_addition = 'v5'  # suffix for future retrieval
     seed = 0  # for testing
     random.seed(seed)  # random draw seeds for scenarios
     n_processes = 7
@@ -111,13 +123,14 @@ if __name__ == '__main__':
     }
     # number and timing of floods
     in_flood_timings = {
-        'n_fld_events':  flood_event_categories,
+        'n_fld_events': flood_event_categories,
         't_last_trailing': t_last_trailing,
         't_next_flood_lim': t_next_flood_upper_bound,  # steps
         'n_variants': n_variants,
         't_first': 0,
-        'mode': timing_generation_mode, # NB: mode 2 is incremental, mode 1 is random, but mode 2 is limited in capability, see docs
-        't_intervals': np.array([1,2,4,6,8,10]) * STEPS_PER_YEAR
+        'mode': timing_generation_mode,
+        # NB: mode 2 is incremental, mode 1 is random, but mode 2 is limited in capability, see docs
+        't_intervals': np.array([1, 2, 4, 6, 8, 10]) * STEPS_PER_YEAR
     }
     # constant variables to be set in model
     # todo !!! NB: CHECK agent priority is in mode A/B
@@ -149,8 +162,8 @@ if __name__ == '__main__':
     """
     # constant variables to be set in model_single_run object
     model_params = {
-        'm_config_params': {}, # can accept other arguments, this run doesn't use them
-        'set_label':'modeC',
+        'm_config_params': {},  # can accept other arguments, this run doesn't use them
+        'set_label': 'modeC',
         'm_constants': in_constants  # constants for model
     }
 
@@ -159,13 +172,13 @@ if __name__ == '__main__':
     # f_timing = MEU.generate_flood_timings(**in_flood_timings)
 
     # generate all scenarios from scenario choices, flood timings, model settings, and seeds
-    m_sets, m_scenarios, m_names  = MEU.prepare_model_runs(fld_scenarios_df=fld_df,
-                                                           fld_names_mapping=fld_shortnames,
-                                                           params_fldS=in_flood_scenarios,
-                                                           params_mSets=model_params,
-                                                           params_fldT=in_flood_timings,
-                                                           params_seeds=seeds,
-                                                           label_add=label_addition)
+    m_sets, m_scenarios, m_names = MEU.prepare_model_runs(fld_scenarios_df=fld_df,
+                                                          fld_names_mapping=fld_shortnames,  # depreciated
+                                                          params_fldS=in_flood_scenarios,
+                                                          params_mSets=model_params,
+                                                          params_fldT=in_flood_timings,
+                                                          params_seeds=seeds,
+                                                          label_add=label_addition)
 
     # combine model filenames and scenarios to make reference for post-processing
     m_ref = {}
@@ -194,12 +207,19 @@ if __name__ == '__main__':
     # t_model = MEU.Model_Single_Run(t_set['model_params'], sim_horizon=t_set['sim_horizon'],
     #                                run_label=t_set['run_name'], seed=seed)
 
+    # save the scenarios to file when run complete
+    if not overwrite_scen_df: # not overwrite, just append
+        m_ref_df_ori = pd.read_pickle(f'data_model_outputs/experiment_scenarios_ref_{label_addition}.pkl.xz')
+        m_ref_df = pd.concat([m_ref_df_ori, m_ref_df])
+
+    m_ref_df.to_pickle(f'data_model_outputs/experiment_scenarios_ref_{label_addition}.pkl.xz')
+
     if test_sim:
         model_test = MEU.Model_Single_Run(m_sets[-1], suffix='_trial')
 
     if run_sim:
         # initialise multiprocessing stuff
-        print(f'Entering Multiprocess with {len(m_sets)} scenarios' )
+        print(f'Entering Multiprocess with {len(m_sets)} scenarios')
         start_time = time.time()
 
         pool = Pool(processes=n_processes)
@@ -216,9 +236,13 @@ if __name__ == '__main__':
         #         successful = [task.successful() for task in experiments]
         pool.join()
 
-        # save the scenarios to file when run complete
-        m_ref_df.to_pickle(f'data_model_outputs/experiment_scenarios_ref_{label_addition}.pkl.xz')
+        if overwrite_scen_df:
+            # save the scenarios to file when run complete
+            m_ref_df.to_pickle(f'data_model_outputs/experiment_scenarios_ref_{label_addition}.pkl.xz')
+        else: # not overwrite, just append
+            m_ref_df_ori = pd.read_pickle(f'data_model_outputs/experiment_scenarios_ref_{label_addition}.pkl.xz')
+            m_ref_df_ori = pd.concat([m_ref_df_ori, m_ref_df])
 
-        print(f"*** Experiments completed at elapsed {round((time.time() - start_time)/ 60, 2)} mins")
+        print(f"*** Experiments completed at elapsed {round((time.time() - start_time) / 60, 2)} mins")
     else:
         print('@experiments.py: multiprocess not run')

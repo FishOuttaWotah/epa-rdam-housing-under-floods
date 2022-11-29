@@ -22,7 +22,8 @@ def generate_flood_scenarios(fld_scenarios,
     # generate permutations of scenarios based on number of flood events within simulation
     generate = []
     for n in n_fld_events:
-        choicelist = list(itertools.permutations(fld_scenarios, r=n))
+        choicelist = list(itertools.product(fld_scenarios, repeat=n))
+
         if l_scenarios_per_cat < len(choicelist): # choose subset of choices
             select = random.sample(choicelist, k=l_scenarios_per_cat)
         else:  # if number of scenarios is larger than choices, just put whatever is available
@@ -45,13 +46,19 @@ def generate_flood_timings(n_fld_events: Sequence[int], t_last_trailing: int, t_
     """
 
     generate = []
+    if t_intervals is not None:  # for consistent end time
+        t_end = t_last_trailing  + t_intervals[-1]
+    else:
+        raise NotImplementedError("current function only supports mode 2 with specified t_intervals")
+
     for n in n_fld_events:
         if n == 1:  # just create first and last
-            t_end = t_last_trailing
+            # t_end = t_last_trailing
             generate.append([((t_first,), t_end)])
             # first position is always known
         elif n == 0:
-            generate.append([((-1,), t_next_flood_lim + t_last_trailing)])
+            # generate.append([((-1,), t_next_flood_lim + t_last_trailing)])  # original
+            generate.append([((-1,),t_end)])
         else:
             sublist = None  # dummy placeholder for python type hint
             # sublist = [[t_first] * n_variants]  # generate first flood (always 0)
@@ -69,9 +76,11 @@ def generate_flood_timings(n_fld_events: Sequence[int], t_last_trailing: int, t_
                 sublist = [[t_first] * len(t_intervals)]
                 if n > 2:
                     raise NotImplementedError('Warning <model_experiment_utils.generate_flood_timings>: mode 2 is not designed for more than 2 floods')
-                if n_variants < 2:
-                    raise ValueError('Warning <model_experiment_utils.generate_flood_timings>: mode 2 requires n_variants > 1')
+
                 if t_intervals is None:
+                    if n_variants < 2:
+                        raise ValueError(
+                            'Warning <model_experiment_utils.generate_flood_timings>: mode 2 requires n_variants > 1')
                     sublist.append(list(np.linspace(start=1,
                                              stop=t_next_flood_lim+1,
                                              num=n_variants,
@@ -85,7 +94,9 @@ def generate_flood_timings(n_fld_events: Sequence[int], t_last_trailing: int, t_
             for elem in zip(*sublist):
                 cumulative = [sum(elem[:idx + 1]) for idx, _ in enumerate(elem)]
                 times.append(
-                    (tuple(cumulative), elem[-1] + t_last_trailing))  # also add the last point of simulation
+                    # (tuple(cumulative), elem[-1] + t_last_trailing))  # also add the last point of simulation (original)
+                    (tuple(cumulative), t_end))  # also add the last point of simulation
+
             generate.append(times)
 
     return generate
@@ -152,7 +163,7 @@ def prepare_model_runs(fld_scenarios_df,
         # make label that will be used for filing/saving
         name = f"{mset_key}_" \
                f"{label_add}"\
-               f"[{'+'.join([fld_names_mapping[name] for name in scenarios])}]_" \
+               f"[{'+'.join([name for name in scenarios])}]_" \
                f"({'+'.join([str(t) for t in fld_time])})_" \
                f"iter{seed}"
 
@@ -186,7 +197,7 @@ class Model_Single_Run:
         seed = input_batch['seed']
         print(f'Simulating {run_label}')
 
-        random.seed(seed)  # double set seed just in case
+        random.seed(seed)  # double set seed, just in case
         self.model: model_init.RHuCC_Model = model_init.RHuCC_Model(seed=seed, **model_params)
 
         while self.model.schedule.steps < sim_horizon:
