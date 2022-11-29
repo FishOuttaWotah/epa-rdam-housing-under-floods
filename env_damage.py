@@ -205,6 +205,7 @@ def set_discount_C(model: model_init.RHuCC_Model):
     # repaired = [False] * houses.size
     temp = pd.DataFrame(data={'h_obj': houses.values,
                               'discount': discounts,
+                              'discount_start': discounts,
                               'discount_r': discount_r,
                               'elapsed': elapsed}, index=houses.index)
 
@@ -226,7 +227,7 @@ def update_discount_C(model: model_init.RHuCC_Model):
             repaired = model.h_discounted.loc[repaired_idx]
             repaired['elapsed'] = repaired['elapsed'] + 1
             repaired['discount_r'] = model.func_h_discount(repaired['elapsed'])
-            repaired['discount'] = repaired['discount'].multiply(repaired['discount_r'], axis=0,
+            repaired['discount'] = repaired['discount_start'].multiply(repaired['discount_r'], axis=0,
                                                                  fill_value=0)
             # check for NANs or negligible discounts in DF (indicating discount has passed)
             is_zero = repaired.loc[(repaired['discount'] >= -0.001) | repaired['discount'].isnull(),:]
