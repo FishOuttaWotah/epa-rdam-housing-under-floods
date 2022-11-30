@@ -71,7 +71,7 @@ def update_discount(model: model_init.RHuCC_Model,
         model.d_discounts = model.d_discounts[~model.d_discounts.index.duplicated(keep='last')]
 
     # normal operations
-    if not model.d_discounts.empty:  # if
+    if not model.d_discounts.empty:  # if discounts contains anything
         model.d_discounts.t_elapsed = model.d_discounts.t_elapsed + 1  # increment time
         model.d_discounts.discount = discount_curve(
             model.d_discounts.t_elapsed / model.STEPS_PER_YEAR)  # calculate damage
@@ -101,10 +101,15 @@ def update_attraction_A(model: model_init.RHuCC_Model,
 def update_attraction_B(model: model_init.RHuCC_Model):
     # get non-NA values from the devastation model attribute
     # and just update according to devastation
-    affected = model.d_devastation.loc[model.d_devastation.ratio.notna(), 'ratio']  # bool mask
-    if not affected.empty:  #
-        disattract = 100 - (model.D_MAX_PENALTY * affected).round().astype(int)
+    disc_distr = model.d_devastation.ratio.notna()  # find districts that are still discounted
+
+    if not disc_distr.empty:  #
+        affected = model.d_devastation.loc[disc_distr, 'ratio']
+        disattract = model.MAX_ATTRACTION - (model.D_MAX_PENALTY * affected).round().astype(int)
         model.d_attraction.update(disattract.rename('d_attraction'))
+
+    # force other districts to be back to normal attraction
+    model.d_attraction[~disc_distr] = model.MAX_ATTRACTION
     return
 
 
@@ -161,7 +166,7 @@ def update_devastation(model: model_init.RHuCC_Model,
     # get full data of flooded homes
     to_check = False
     if model.RUN_CONFIG == 'C':
-        if not model.h_discounted.empty:
+        if not model.h_discounted.empty:  # check if discounted pool is empty
             to_check = True
             affected = model.h_df.loc[model.h_discounted.index, :]['district'].value_counts().astype('int')
         else:
@@ -227,8 +232,7 @@ def update_discount_C(model: model_init.RHuCC_Model):
             repaired = model.h_discounted.loc[repaired_idx]
             repaired['elapsed'] = repaired['elapsed'] + 1
             repaired['discount_r'] = model.func_h_discount(repaired['elapsed'])
-            repaired['discount'] = repaired['discount_start'].multiply(repaired['discount_r'], axis=0,
-                                                                 fill_value=0)
+            repaired['discount'] = repaired['discount_start'].multiply(repaired['discount_r'], axis=0,)#fill_value=0)
             # check for NANs or negligible discounts in DF (indicating discount has passed)
             is_zero = repaired.loc[(repaired['discount'] >= -0.001) | repaired['discount'].isnull(),:]
             # update

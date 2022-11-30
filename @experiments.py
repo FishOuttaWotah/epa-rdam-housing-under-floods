@@ -97,7 +97,7 @@ if __name__ == '__main__':
     run_sim = True  # True to run all sims.
     test_sim = False
 
-    run_pt = 2  # todo: ensure this is 1 or 2
+    run_pt = 1  # todo: ensure this is 1 or 2
     if run_pt == 1:  # run with 2-floods for 1 rep each
         flood_event_categories = [2]
         seeds = list(range(1))  # number of iterations with consistent seeds.
@@ -208,11 +208,7 @@ if __name__ == '__main__':
     #                                run_label=t_set['run_name'], seed=seed)
 
     # save the scenarios to file when run complete
-    if not overwrite_scen_df: # not overwrite, just append
-        m_ref_df_ori = pd.read_pickle(f'data_model_outputs/experiment_scenarios_ref_{label_addition}.pkl.xz')
-        m_ref_df = pd.concat([m_ref_df_ori, m_ref_df])
 
-    m_ref_df.to_pickle(f'data_model_outputs/experiment_scenarios_ref_{label_addition}.pkl.xz')
 
     if test_sim:
         model_test = MEU.Model_Single_Run(m_sets[-1], suffix='_trial')
@@ -236,12 +232,11 @@ if __name__ == '__main__':
         #         successful = [task.successful() for task in experiments]
         pool.join()
 
-        if overwrite_scen_df:
-            # save the scenarios to file when run complete
-            m_ref_df.to_pickle(f'data_model_outputs/experiment_scenarios_ref_{label_addition}.pkl.xz')
-        else: # not overwrite, just append
+        if not overwrite_scen_df:  # not overwrite, just append
             m_ref_df_ori = pd.read_pickle(f'data_model_outputs/experiment_scenarios_ref_{label_addition}.pkl.xz')
-            m_ref_df_ori = pd.concat([m_ref_df_ori, m_ref_df])
+            m_ref_df = pd.concat([m_ref_df_ori, m_ref_df])
+
+        m_ref_df.to_pickle(f'data_model_outputs/experiment_scenarios_ref_{label_addition}.pkl.xz')
 
         print(f"*** Experiments completed at elapsed {round((time.time() - start_time) / 60, 2)} mins")
     else:

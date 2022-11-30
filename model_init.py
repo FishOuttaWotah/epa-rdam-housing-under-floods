@@ -179,7 +179,7 @@ class RHuCC_Model(mesa.Model):
         # self.datacollector.collect(self)
         self.datacollector.model_vars['hh_transactions'].append(self.housing_market.sold.copy(deep=True))
         self.datacollector.model_vars['hh_agents'].append(self.h_df.copy(deep=True))
-        pass
+        # pass
 
 
 if __name__ == "__main__":
