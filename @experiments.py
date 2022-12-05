@@ -97,7 +97,7 @@ if __name__ == '__main__':
     run_sim = True  # True to run all sims.
     test_sim = False
 
-    run_pt = 1  # todo: ensure this is 1 or 2
+    run_pt = 2  # todo: ensure this is 1 or 2
     if run_pt == 1:  # run with 2-floods for 1 rep each
         flood_event_categories = [2]
         seeds = list(range(1))  # number of iterations with consistent seeds.
