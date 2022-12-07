@@ -10,7 +10,7 @@ import copy
 from multiprocessing import Pool
 import time
 
-import agent_firm_basic
+# import agent_firm_basic
 import agent_household
 import env_damage
 import env_socioeconomic
