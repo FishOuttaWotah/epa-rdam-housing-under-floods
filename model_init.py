@@ -17,8 +17,8 @@ if TYPE_CHECKING:
 import model_scheduler
 import model_ledger
 import agent_generator
-import agent_firm_basic
-import env_housing_market
+# import agent_firm_basic
+import agent_housing_market
 import model_datacollection_h as dc_h
 
 ## NB!!! : be very careful with renaming the arguments in the model init. These changes may not be reflected in some strings (due to the kwargs input method used in this model) and would raise errors.

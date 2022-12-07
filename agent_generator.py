@@ -8,7 +8,7 @@ import numpy as np
 import rasterio
 
 import agent_base
-import agent_firm_basic
+# import agent_firm_basic
 
 if TYPE_CHECKING:
     import model_init
