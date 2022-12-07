@@ -16,7 +16,7 @@ import model_init
 import model_experiment_utils
 from agent_base import DelayAssigned
 import env_flooding
-from agent_housing_market import HousingMarket, Buyer
+from env_housing_market import HousingMarket, Buyer
 
 # treat these as toy experiments sandbox for now
 

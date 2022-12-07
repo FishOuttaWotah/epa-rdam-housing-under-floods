@@ -10,7 +10,7 @@ import copy
 from multiprocessing import Pool
 import time
 
-# import agent_firm_basic
+import agent_firm_basic
 import agent_household
 import env_damage
 import env_socioeconomic
@@ -18,7 +18,7 @@ import model_init
 import model_experiment_utils as MEU
 from agent_base import DelayAssigned
 import env_flooding
-from agent_housing_market import HousingMarket, Buyer
+from env_housing_market import HousingMarket, Buyer
 
 
 # dummy reporting for Pool
